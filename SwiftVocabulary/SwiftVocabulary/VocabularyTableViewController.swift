@@ -10,15 +10,11 @@ import UIKit
 
 class VocabularyTableViewController: UITableViewController {
     
-    
+    // This is nice bc no matter what the user gets 3 definitions for free at the start of the app, without having to persist.  This would be sort've an "array literal"
     var words: [Word] = [Word(name: "Delegate", definition: "An object, such as a viewController class, who acts as a supplier of information to a delegator object"), Word(name: "Protocol", definition: "Set of rules which governs how an object performs at its basest level"), Word(name: "Object", definition: "A property or collection of properties which make up an overall bigger entity, which we call an object.  Objects can be classes, structs, or properties (variables, constants)")]
     
     var alertController: UIAlertController?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
     
     
     @IBAction func addWordButtonTapped(_ sender: Any) {
@@ -30,11 +26,11 @@ class VocabularyTableViewController: UITableViewController {
         alertController.textFields![1].placeholder = "Enter Definition"
 
         let saveAction = UIAlertAction(title: "Save", style: .default) { (alertAction) in
+            // NOTE: textFields comes as a free array as part of UIAlertController
             let newestWord = alertController.textFields![0]
             let newestDefinition = alertController.textFields![1]
             
             let latestWord = Word(name: newestWord.text ?? "user made nil entry", definition: newestDefinition.text ?? "delete this entry")
-            
             self.words.append(latestWord)
             
             DispatchQueue.main.async {
@@ -67,7 +63,6 @@ class VocabularyTableViewController: UITableViewController {
         
         return cell
     }
-
 
     
     // MARK: - Navigation
