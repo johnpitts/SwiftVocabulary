@@ -26,16 +26,16 @@ class VocabularyTableViewController: UITableViewController {
     
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("number of cells: \(words.count)")
+        
         return words.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WordCell", for: indexPath)
-        print("cellForRowat")
+        
         cell.textLabel?.text = words[indexPath.row].name
-
+        
         return cell
     }
 
@@ -44,12 +44,13 @@ class VocabularyTableViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "ShowDefinitions" {
+            guard let indexPath = tableView.indexPathForSelectedRow,
+                  let detailVC = segue.destination as? DefinitionViewController else { return }
+            detailVC.word = words[indexPath.row]
             
-            guard let indexPath = tableView.indexPathForSelectedRow else { return }
         }
-        // Pass the selected object to the new view controller.
     }
     
-
 }
