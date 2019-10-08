@@ -13,8 +13,10 @@ class DefinitionViewController: UIViewController {
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var definitionTextView: UITextView!
     
+    
     var word: Word?
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,8 +27,8 @@ class DefinitionViewController: UIViewController {
         
         guard let word = word else { return }
         wordLabel.text = word.name
+        print(word.definition)
         definitionTextView.text = word.definition
-        
     }
 
 }
