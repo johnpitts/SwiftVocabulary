@@ -27,7 +27,8 @@ class DefinitionViewController: UIViewController {
         
         guard let word = word else { return }
         wordLabel.text = word.name
-        print(word.definition)
+        print(word.name, " ", word.definition)
+        //definitionTextView.isScrollEnabled = false
         definitionTextView.text = word.definition
     }
 

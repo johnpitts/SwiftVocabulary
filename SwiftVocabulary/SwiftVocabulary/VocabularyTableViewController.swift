@@ -23,15 +23,22 @@ class VocabularyTableViewController: UITableViewController {
     
     @IBAction func addWordButtonTapped(_ sender: Any) {
         
-        let alertController = UIAlertController(title: "Add New Vocab. Word", message: "", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Add New Vocab. Word", message: "add details", preferredStyle: .alert)
         alertController.addTextField()
+        alertController.textFields![0].placeholder = "Enter Vocabulary Word"
+        alertController.addTextField()
+        alertController.textFields![1].placeholder = "Enter Definition"
 //        alertController.addTextField { (textField: UITextField!) -> Void in
 //            textField.placeholder = "Enter new word"
 //        }
         let saveAction = UIAlertAction(title: "Save", style: .default) { (alertAction) in
             let newestWord = alertController.textFields![0]
-            let latestWord = Word(name: newestWord.text ?? "Shit4Brains", definition: "we don't have a second textField yet for definition")
+            let newestDefinition = alertController.textFields![1]
+            
+            let latestWord = Word(name: newestWord.text ?? "Shit4Brains", definition: newestDefinition.text!)
+            
             self.words.append(latestWord)
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
