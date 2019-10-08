@@ -28,14 +28,12 @@ class VocabularyTableViewController: UITableViewController {
         alertController.textFields![0].placeholder = "Enter Vocabulary Word"
         alertController.addTextField()
         alertController.textFields![1].placeholder = "Enter Definition"
-//        alertController.addTextField { (textField: UITextField!) -> Void in
-//            textField.placeholder = "Enter new word"
-//        }
+
         let saveAction = UIAlertAction(title: "Save", style: .default) { (alertAction) in
             let newestWord = alertController.textFields![0]
             let newestDefinition = alertController.textFields![1]
             
-            let latestWord = Word(name: newestWord.text ?? "Shit4Brains", definition: newestDefinition.text!)
+            let latestWord = Word(name: newestWord.text ?? "user made nil entry", definition: newestDefinition.text ?? "delete this entry")
             
             self.words.append(latestWord)
             
